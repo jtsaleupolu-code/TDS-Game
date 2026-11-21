@@ -4,12 +4,14 @@
 #include <engine.h>
 #include <transform.h>
 #include <collision.h>
+#include <Camera.h>
 #include <vector>
 
 
 class Player {
     private:
         Transform transform;
+        Vec2 WorldPosition;
         Vec2 velocity;
 
         float targetAngle;
@@ -27,14 +29,18 @@ class Player {
         Texture getTex() {return tex;}
         Vec2 getVel() {return velocity;}
         float gettargetAngle() {return targetAngle;}
+
+        Vec2 getWorldPos() {return WorldPosition;}
         // setters
         void setTrans(Transform transform);
         void setTrans(float angle);
         void setTex(Texture texture);
         void setVel(Vec2 velocity);
         void setTargetAngle(float targetAngle);
+
+        void setWorldPos(Vec2 pos);
         // functions
-        void renderPlayer();
+        void renderPlayer(Camera cam);
         void playerController(float dt);
 
 

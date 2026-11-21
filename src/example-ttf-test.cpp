@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include <Player.h>
+#include <Camera.h>
 using namespace std;
 
 // Swansea TTF font
@@ -9,6 +10,10 @@ Font swansea;
 
 Player p1;
 Texture PlayerTex;
+Camera camera;
+
+Texture tempLevel;
+
 
 // Initialise (called once at start)
 void init() {
@@ -16,7 +21,7 @@ void init() {
 
 
     try {
-        Transform trans(nullptr, Vec2(LOGICAL_W/2, LOGICAL_H/2), 0.0f, Vec2(60, 40));
+        Transform trans(nullptr, Vec2(LOGICAL_W/2, LOGICAL_H/2), 0.0f, Vec2(60, 40));  //LOGICAL_W/2, LOGICAL_H/2
 
         //p1.setTrans(trans);
         //hero.getTransform() = trans;
@@ -26,6 +31,7 @@ void init() {
         
         //p1.setTex(PlayerTex);
         p1 = Player(trans, PlayerTex);
+        p1.setWorldPos(Vec2(0,0));
 
         // load level
         /*levelTexture = loadTexture("./assets/Levels/tempLevel.png");
@@ -35,6 +41,8 @@ void init() {
 
     } catch (const char* msg) {std::cout << "Error: " << msg;}
 
+    tempLevel = loadTexture("./assets/tempLevel.png");
+
     swansea = loadFont("./assets/fonts/Swansea.ttf");
 }
 
@@ -42,6 +50,8 @@ void init() {
 void update(float dt) {
     // update player rotation -- shooting
     p1.playerController(dt);
+
+    camera.Follow(p1.getWorldPos(), dt);
 
     // update level -- traversal
     // need to sort out tile mapping
@@ -53,9 +63,10 @@ void render(float lag) {
     clear(0,0,0);
 
     // render level
+    //drawTexture(tempLevel, Rect{0,0,1000,1000}, Rect{10, 10, 1000, 1000}, 0.0f, 255);
 
     // render player
-    p1.renderPlayer();
+    p1.renderPlayer(camera);
 
 
     /*drawText(50, 50, "Testing", 255, 0, 0, 255, swansea, 15);
