@@ -3,6 +3,8 @@
 
 #include <Player.h>
 #include <Camera.h>
+#include <BaseLevel.h>
+#include <string>
 using namespace std;
 
 // Swansea TTF font
@@ -14,6 +16,10 @@ Camera camera;
 
 Texture tempLevel;
 
+BaseLevel level;
+
+
+
 
 // Initialise (called once at start)
 void init() {
@@ -21,7 +27,7 @@ void init() {
 
 
     try {
-        Transform trans(nullptr, Vec2(LOGICAL_W/2, LOGICAL_H/2), 0.0f, Vec2(60, 40));  //LOGICAL_W/2, LOGICAL_H/2
+        Transform trans(nullptr, Vec2(0,0), 0.0f, Vec2(60, 40));  //LOGICAL_W/2, LOGICAL_H/2
 
         //p1.setTrans(trans);
         //hero.getTransform() = trans;
@@ -40,6 +46,11 @@ void init() {
         start = getTimeInSeconds();*/
 
     } catch (const char* msg) {std::cout << "Error: " << msg;}
+
+    Texture levelTex = loadTexture("./assets/tempTiles.png");
+
+    level.tilemap.setTileSet(levelTex);
+    level.Load("./assets/BasicTileMap.csv");
 
     tempLevel = loadTexture("./assets/tempLevel.png");
 
@@ -64,6 +75,7 @@ void render(float lag) {
 
     // render level
     //drawTexture(tempLevel, Rect{0,0,1000,1000}, Rect{10, 10, 1000, 1000}, 0.0f, 255);
+    level.Render(camera);
 
     // render player
     p1.renderPlayer(camera);
@@ -77,6 +89,13 @@ void render(float lag) {
     char timer[200];
     sprintf(timer, "time: %f", getTimeInSeconds());
     drawText(50, 150, timer, 64, 0, 64, 255, swansea, 15);*/
+
+    char pos[200];
+    sprintf(pos, "PlayerPosition   : %f %f", p1.getWorldPos().x, p1.getWorldPos().y);
+    drawText(10, 10, pos, 255, 255, 255, 255);
+    char camPos[200];
+    sprintf(camPos, "CamPosition      : %f %f", camera.getPosition().x, camera.getPosition().y);
+    drawText(10, 20, camPos, 255,255,255,255);
 }
 
 // Close the Game

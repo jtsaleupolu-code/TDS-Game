@@ -25,9 +25,21 @@ void Player::playerController(float dt) {
 
     mxy.x *= scaleX;  //scaleX
     mxy.y *= scaleY;  //scaleY
-    printf("WorldPos of player: %d\n", WorldPosition);
+    //printf("WorldPos of player: %d\n", WorldPosition);
     Vec2 forward = mxy - getTrans().localPosition; // WorldPosition;//
     float targetAngle = atan2(forward.y, forward.x)  * 180.0f / M_PI; 
 
     setTrans(targetAngle);
+
+    if(keyIsPressed(KEY_W)) {WorldPosition.y += Vec2::up.y * getSpeed() * dt;}
+    if(keyIsPressed(KEY_S)) {WorldPosition.y += Vec2::down.y * getSpeed() * dt;}
+    if(keyIsPressed(KEY_A)) {WorldPosition.x += Vec2::left.x * getSpeed() * dt;}
+    if(keyIsPressed(KEY_D)) {WorldPosition.x += Vec2::right.x * getSpeed() * dt;}
+    
+
+    
+
+    //gprintf("Player Position: %i, %i\n", WorldPosition.x, WorldPosition.y);
+
+    
 }

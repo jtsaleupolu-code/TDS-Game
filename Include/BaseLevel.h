@@ -14,7 +14,7 @@ class BaseLevel {
     public:
         TileMap tilemap;
 
-        void Load(const std::string& filename);
+        void Load(const std::string &filename);
         void Update(float dt);
         void Render(Camera& camera);
 };

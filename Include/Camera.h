@@ -19,7 +19,7 @@ class Camera {
 
             PosXY.x += (targetCamX - PosXY.x) * 5 * dt;
             PosXY.y += (targetCamY - PosXY.y) * 5 * dt;
-            printf("POSXY: %d, %d \n", PosXY.x, PosXY.y);
+            //printf("POSXY: %i, %i \n", PosXY.x, PosXY.y);
         }
 };
 

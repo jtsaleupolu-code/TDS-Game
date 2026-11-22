@@ -13,6 +13,7 @@ class Player {
         Transform transform;
         Vec2 WorldPosition;
         Vec2 velocity;
+        float speed = 100;
 
         float targetAngle;
         Texture tex;
@@ -31,6 +32,7 @@ class Player {
         float gettargetAngle() {return targetAngle;}
 
         Vec2 getWorldPos() {return WorldPosition;}
+        float getSpeed() {return speed;}
         // setters
         void setTrans(Transform transform);
         void setTrans(float angle);
