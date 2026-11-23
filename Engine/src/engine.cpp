@@ -18,7 +18,7 @@ Uint64 last = 0;
 
 // Update Methods
 GameLoopType gameLoop = GAME_LOOP_HYBRID;
-int target_fps = 60;
+int target_fps = 144;
 
 // Default Window Size
 int LOGICAL_W = 640;

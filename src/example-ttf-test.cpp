@@ -30,9 +30,9 @@ float rendTimer = 0.0f;
 void init() {
     setWindowTitle("Massey - Font Test");
     //gameLoop = GAME_LOOP_FIXED;
-
+    //SDL_HideCursor();
     try {
-        Transform trans(nullptr, Vec2(0,0), 0.0f, Vec2(60, 40));  //LOGICAL_W/2, LOGICAL_H/2
+        Transform trans(nullptr, Vec2(LOGICAL_W/2, LOGICAL_H/2), 0.0f, Vec2(60, 40));  //LOGICAL_W/2, LOGICAL_H/2
 
         //p1.setTrans(trans);
         //hero.getTransform() = trans;

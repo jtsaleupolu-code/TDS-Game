@@ -14,7 +14,7 @@ void Player::setWorldPos(Vec2 pos) {this->WorldPosition = pos;}
 void Player::renderPlayer(Camera cam) {
     Vec2 ScreenPos;
     ScreenPos.x = WorldPosition.x - cam.getPosition().x;
-    ScreenPos.y = WorldPosition.y - cam.getPosition().y;
+    ScreenPos.y = (WorldPosition.y - cam.getPosition().y);
     //drawTexture(tex, getTrans().localPosition - getTrans().localScale/2, getTrans().localScale, getTrans().localAngle);
     drawTexture(tex, ScreenPos, getTrans().localScale, getTrans().localAngle);
 }
