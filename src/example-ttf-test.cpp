@@ -18,13 +18,18 @@ Texture tempLevel;
 
 BaseLevel level;
 
+float deltaCount;
+int renderCount = 0;
+float rendTimer = 0.0f;
+
+
 
 
 
 // Initialise (called once at start)
 void init() {
     setWindowTitle("Massey - Font Test");
-
+    //gameLoop = GAME_LOOP_FIXED;
 
     try {
         Transform trans(nullptr, Vec2(0,0), 0.0f, Vec2(60, 40));  //LOGICAL_W/2, LOGICAL_H/2
@@ -64,8 +69,13 @@ void update(float dt) {
 
     camera.Follow(p1.getWorldPos(), dt);
 
+    deltaCount = dt;
+
+    rendTimer += dt;
+
     // update level -- traversal
     // need to sort out tile mapping
+    
     
 }
 
@@ -96,6 +106,28 @@ void render(float lag) {
     char camPos[200];
     sprintf(camPos, "CamPosition      : %f %f", camera.getPosition().x, camera.getPosition().y);
     drawText(10, 20, camPos, 255,255,255,255);
+
+    float fpsTimer = 0.0f;
+    int frameCount = 0;
+    float currentFPS = 0.0f;
+
+
+    char fps[200];
+    sprintf(fps, "FPS: %f", (1.0f / deltaCount));
+    drawText(10,40,fps,255,255,255,255);
+
+    renderCount++;
+    char renderHtz[200];
+    sprintf(renderHtz, "renderTiming: %i\n", renderCount);
+    drawText(10,50,renderHtz,255,255,255,255);
+    if (rendTimer >= 1.0f) {
+        
+
+        renderCount = 0;
+        rendTimer = 0.0f;
+    }
+    
+    
 }
 
 // Close the Game

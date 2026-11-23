@@ -12,7 +12,7 @@ class TileSet {
         std::vector<Texture> tileTex;
 
         void RenderTile(int id, Vec2 pos) {
-            printf("In rendertile \n");
+            //printf("In rendertile \n");
             switch(id) {
                 case 1:
                     drawTexture(tileTex[0], pos, Vec2(32,32), 0);
@@ -54,7 +54,13 @@ class TileMap {
 
         int getWidth() {return width;}
         int getHeight() {return height;}
-        std::vector<int> getTiles() {return tiles;}
+        std::vector<int>* getTiles() {return &tiles;}
+
+        int getTileValue(int index) {
+            //printf("Retrieving index: %i  TileValue: %i\n", index, tiles[index]);
+            return tiles[index];
+        }
+
         TileSet getTileSet() {return tileSet;}
 
         void setTileSet(Texture texture) {tileSet.LoadTiles(texture);}

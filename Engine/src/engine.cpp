@@ -270,7 +270,11 @@ SDL_AppResult fixedUpdateVariableRender() {
 
 // Main game loop function
 SDL_AppResult SDL_AppIterate(void *appstate) {
-    if(gameLoop == GAME_LOOP_FIXED) {
+
+    // used only fixed render and update frames
+    fixedTimeStep();
+
+    /*if(gameLoop == GAME_LOOP_FIXED) {
         // Fixed Time Step
         fixedTimeStep();
     } else if(gameLoop == GAME_LOOP_VARIABLE) {
@@ -282,7 +286,7 @@ SDL_AppResult SDL_AppIterate(void *appstate) {
     } else {
         // Default - Fixed Update Variable Render
         fixedUpdateVariableRender();
-    }
+    }*/
 
     // Continue program
     return SDL_APP_CONTINUE;
