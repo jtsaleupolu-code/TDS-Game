@@ -22,6 +22,7 @@ float deltaCount;
 int renderCount = 0;
 float rendTimer = 0.0f;
 
+int renderFrames = 0;
 
 
 
@@ -100,6 +101,8 @@ void render(float lag) {
     sprintf(timer, "time: %f", getTimeInSeconds());
     drawText(50, 150, timer, 64, 0, 64, 255, swansea, 15);*/
 
+
+    // debug screen display
     char pos[200];
     sprintf(pos, "PlayerPosition   : %f %f", p1.getWorldPos().x, p1.getWorldPos().y);
     drawText(10, 10, pos, 255, 255, 255, 255);
@@ -111,18 +114,17 @@ void render(float lag) {
     int frameCount = 0;
     float currentFPS = 0.0f;
 
-
     char fps[200];
     sprintf(fps, "FPS: %f", (1.0f / deltaCount));
     drawText(10,40,fps,255,255,255,255);
 
     renderCount++;
     char renderHtz[200];
-    sprintf(renderHtz, "renderTiming: %i\n", renderCount);
+    sprintf(renderHtz, "renderTiming: %i\n", renderFrames);
     drawText(10,50,renderHtz,255,255,255,255);
     if (rendTimer >= 1.0f) {
         
-
+        renderFrames = renderCount;
         renderCount = 0;
         rendTimer = 0.0f;
     }
