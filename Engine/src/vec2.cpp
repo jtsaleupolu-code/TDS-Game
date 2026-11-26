@@ -55,6 +55,16 @@ float distance(const Vec2 &a, const Vec2 &b) {
     return length(a - b);
 }
 
+
+
+Vec2 Normalize(const Vec2 &v) {
+    float length = std::sqrt(v.x * v.x + v.y * v.y);
+    if (length > 0.0f) {
+        return Vec2(v.x/length, v.y/length);
+    }
+    return v;
+}
+
 // Operators
 
 // Addition

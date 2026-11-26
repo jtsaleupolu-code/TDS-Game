@@ -28,6 +28,8 @@ Vec2 rotate(const Vec2 &v, float angle);
 float dot(const Vec2 &a, const Vec2 &b);
 float distance(const Vec2 &a, const Vec2 &b);
 
+Vec2 Normalize(const Vec2 &v); 
+
 // Overloaded Operators
 Vec2 operator+(const Vec2 &a, const Vec2 &b);
 Vec2& operator+=(Vec2 &a, const Vec2 &b);

@@ -42,7 +42,7 @@ void init() {
         
         //p1.setTex(PlayerTex);
         p1 = Player(trans, PlayerTex);
-        p1.setWorldPos(Vec2(0,0));
+        p1.setWorldPos(Vec2(140,140));
 
         // load level
         /*levelTexture = loadTexture("./assets/Levels/tempLevel.png");
@@ -55,7 +55,7 @@ void init() {
     Texture levelTex = loadTexture("./assets/tempTiles.png");
 
     level.tilemap.setTileSet(levelTex);
-    level.Load("./assets/BasicTileMap.csv");
+    level.Load("./assets/BasicTileMap2.csv");
 
     tempLevel = loadTexture("./assets/tempLevel.png");
 

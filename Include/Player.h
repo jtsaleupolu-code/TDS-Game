@@ -40,6 +40,8 @@ class Player {
         void setVel(Vec2 velocity);
         void setTargetAngle(float targetAngle);
 
+        void setSpeed(float s);
+
         void setWorldPos(Vec2 pos);
         // functions
         void renderPlayer(Camera cam);

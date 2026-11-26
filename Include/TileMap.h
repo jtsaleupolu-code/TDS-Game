@@ -6,6 +6,11 @@
 #include <iostream>
 
 
+struct TileDef {
+    bool solid;
+};
+
+
 class TileSet {
     public:
         Texture *texture;
@@ -47,6 +52,8 @@ class TileMap {
         TileSet tileSet;
 
         std::vector<int> tiles;
+
+        std::vector<TileDef> tileDefs;
     public:
 
         //BaseLevel() {};
@@ -62,6 +69,12 @@ class TileMap {
         }
 
         TileSet getTileSet() {return tileSet;}
+
+        void setDefaultTileDef() {
+            tileDefs.push_back(TileDef{false});
+            tileDefs.push_back(TileDef{false});
+            tileDefs.push_back(TileDef{true});
+        }
 
         void setTileSet(Texture texture) {tileSet.LoadTiles(texture);}
 

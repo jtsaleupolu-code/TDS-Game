@@ -7,6 +7,7 @@ void Player::setTrans(float angle) {this->transform.localAngle = angle;}
 void Player::setTex(Texture texture) {this->tex = texture;}
 void Player::setVel(Vec2 velocity) {this->velocity = velocity;}
 void Player::setTargetAngle(float targetAngle) {this->targetAngle = targetAngle;}
+void Player::setSpeed(float s) {this->speed = s;}
 
 void Player::setWorldPos(Vec2 pos) {this->WorldPosition = pos;}
 
@@ -31,15 +32,19 @@ void Player::playerController(float dt) {
 
     setTrans(targetAngle);
 
-    if(keyIsPressed(KEY_W)) {WorldPosition.y += Vec2::up.y * getSpeed() * dt;}
-    if(keyIsPressed(KEY_S)) {WorldPosition.y += Vec2::down.y * getSpeed() * dt;}
-    if(keyIsPressed(KEY_A)) {WorldPosition.x += Vec2::left.x * getSpeed() * dt;}
-    if(keyIsPressed(KEY_D)) {WorldPosition.x += Vec2::right.x * getSpeed() * dt;}
-    
+    Vec2 movement;
 
-    
+    if(keyIsPressed(KEY_W)) {movement.y += Vec2::up.y;}
+    if(keyIsPressed(KEY_S)) {movement.y += Vec2::down.y;}
+    if(keyIsPressed(KEY_A)) {movement.x += Vec2::left.x;}
+    if(keyIsPressed(KEY_D)) {movement.x += Vec2::right.x;}
+    //if(keyIsPressed(KEY_LSHIFT)) {setSpeed(140);} else {setSpeed(100);}
 
-    //gprintf("Player Position: %i, %i\n", WorldPosition.x, WorldPosition.y);
+    movement = Normalize(movement);
+
+    WorldPosition.y += movement.y * getSpeed() * dt;
+    WorldPosition.x += movement.x * getSpeed() * dt;
+
 
     
 }
